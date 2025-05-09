@@ -8,11 +8,27 @@
 
 .container {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
   background-color: rgb(228, 228, 228);
   width: 100%;
   height: 100vh;
+}
+
+.result-message {
+  text-align: center;
+  max-width: 30rem;
+  display: none;
+}
+
+.result-message.show {
+  display: block;
+}
+
+.result-message p {
+  color: red;
 }
 
 .gues-game {
@@ -67,6 +83,7 @@ button.restart {
   border: #dedede solid 1px;
 }
 
-.computer-guess input, button {
+.computer-guess input,
+button {
   background-color: #dedede;
 }

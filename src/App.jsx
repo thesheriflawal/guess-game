@@ -8,9 +8,11 @@ function App() {
   const [userGuess, setUserGuess] = useState("");
   const [hasGuessed, setHasGuessed] = useState(false);
   const [feedback, setFeedback] = useState("Feedback");
+  const [remainingGuesses, setRemainingGuesses] = useState(5);
 
   const handleGuess = () => {
-    if (userGuess === "") return;
+    if (userGuess === "" || hasGuessed || remainingGuesses <= 0) return;
+
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     setComputerGuess(randomNumber);
     const userNumber = parseInt(userGuess);
@@ -24,6 +26,7 @@ function App() {
     }
 
     setHasGuessed(true);
+    setRemainingGuesses((prev) => prev - 1);
   };
 
   const handleRestart = () => {
@@ -36,6 +39,12 @@ function App() {
   return (
     <>
       <div className="container">
+        <div
+          className={`result-message ${remainingGuesses === 0 ? "show" : ""}`}
+        >
+          <h1>YOU ARE NOW DONE WITH THE GAME.</h1>
+          <p>Restart the page to start over again</p>
+        </div>
         <div className="gues-game">
           <h1>Number Guesser Game</h1>
           <div className="difficulty">
@@ -54,7 +63,7 @@ function App() {
               id="enter-guess"
               value={userGuess}
               onChange={(e) => setUserGuess(e.target.value)}
-              disabled={hasGuessed}
+              disabled={hasGuessed || remainingGuesses <= 0}
             />
           </div>
 
@@ -75,17 +84,22 @@ function App() {
               className="guess-btn"
               id="guess-btn"
               onClick={handleGuess}
-              disabled={hasGuessed}
+              disabled={hasGuessed || remainingGuesses <= 0}
             >
               Guess
             </button>
           </div>
+
           <div className="remaining">
             <p>Remaining guesses: </p>
-            <span className="remaining-guesses">5</span>
+            <span className="remaining-guesses">{remainingGuesses}</span>
           </div>
 
-          <button className="restart" onClick={handleRestart}>
+          <button
+            className="restart"
+            onClick={handleRestart}
+            disabled={remainingGuesses === 0}
+          >
             Restart
           </button>
 
