@@ -50,7 +50,7 @@ function App() {
           className={`result-message ${remainingGuesses === 0 ? "show" : ""}`}
         >
           <h1>YOU ARE NOW DONE WITH THE GAME.</h1>
-          <p>Restart the page to start over again</p>
+          <p>Refresh the page to start over again</p>
         </div>
         <div className="gues-game">
           <h1>Number Guesser Game</h1>
