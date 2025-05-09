@@ -67,6 +67,6 @@ button.restart {
   border: #dedede solid 1px;
 }
 
-.computer-guess input {
+.computer-guess input, button {
   background-color: #dedede;
 }

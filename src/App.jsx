@@ -5,14 +5,20 @@ import "./App.css";
 
 function App() {
   const [computerGuess, setComputerGuess] = useState(0);
+  const [userGuess, setUserGuess] = useState("");
+  const [hasGuessed, setHasGuessed] = useState(false);
 
   const handleGuess = () => {
+    if (userGuess === "") return;
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     setComputerGuess(randomNumber);
+    setHasGuessed(true);
   };
 
   const handleRestart = () => {
     setComputerGuess(0);
+    setUserGuess("");
+    setHasGuessed(false);
   };
 
   return (
@@ -30,7 +36,14 @@ function App() {
           </div>
           <div className="enter-guess">
             <p>Enter your guess: </p>
-            <input type="number" name="enter-guess" id="enter-guess" />
+            <input
+              type="number"
+              name="enter-guess"
+              id="enter-guess"
+              value={userGuess}
+              onChange={(e) => setUserGuess(e.target.value)}
+              disabled={hasGuessed}
+            />
           </div>
 
           <div className="computer-guess">
@@ -39,14 +52,19 @@ function App() {
               type="number"
               name="computer-guess"
               id="computer-guess"
-              value={computerGuess}
+              value={hasGuessed ? computerGuess : ""}
               disabled
             />
           </div>
 
           <div className="guess">
             <span className="score">Too low!</span>
-            <button className="guess-btn" id="guess-btn" onClick={handleGuess}>
+            <button
+              className="guess-btn"
+              id="guess-btn"
+              onClick={handleGuess}
+              disabled={hasGuessed}
+            >
               Guess
             </button>
           </div>
