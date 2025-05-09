@@ -4,7 +4,16 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [computerGuess, setComputerGuess] = useState(0);
+
+  const handleGuess = () => {
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    setComputerGuess(randomNumber);
+  };
+
+  const handleRestart = () => {
+    setComputerGuess(0);
+  };
 
   return (
     <>
@@ -24,9 +33,20 @@ function App() {
             <input type="number" name="enter-guess" id="enter-guess" />
           </div>
 
+          <div className="computer-guess">
+            <p>Computer's guess: </p>
+            <input
+              type="number"
+              name="computer-guess"
+              id="computer-guess"
+              value={computerGuess}
+              disabled
+            />
+          </div>
+
           <div className="guess">
             <span className="score">Too low!</span>
-            <button className="guess-btn" id="guess-btn">
+            <button className="guess-btn" id="guess-btn" onClick={handleGuess}>
               Guess
             </button>
           </div>
@@ -34,12 +54,19 @@ function App() {
             <p>Remaining guesses: </p>
             <span className="remaining-guesses">5</span>
           </div>
-          <button>Restart</button>
 
+          <button className="restart" onClick={handleRestart}>
+            Restart
+          </button>
 
-          <div className="mode">
-            <p>Mode</p>
-            <input type="checkbox" name="mode" id="mode" />
+          <div className="animation">
+            <p>Animations</p>
+            <input
+              className="animation-checkbox"
+              type="checkbox"
+              name="animation"
+              id="animation"
+            />
           </div>
         </div>
       </div>
