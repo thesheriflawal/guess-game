@@ -7,11 +7,22 @@ function App() {
   const [computerGuess, setComputerGuess] = useState(0);
   const [userGuess, setUserGuess] = useState("");
   const [hasGuessed, setHasGuessed] = useState(false);
+  const [feedback, setFeedback] = useState("Feedback");
 
   const handleGuess = () => {
     if (userGuess === "") return;
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     setComputerGuess(randomNumber);
+    const userNumber = parseInt(userGuess);
+
+    if (userNumber < randomNumber) {
+      setFeedback("Too low!");
+    } else if (userNumber > randomNumber) {
+      setFeedback("Too high!");
+    } else {
+      setFeedback("Correct!");
+    }
+
     setHasGuessed(true);
   };
 
@@ -19,6 +30,7 @@ function App() {
     setComputerGuess(0);
     setUserGuess("");
     setHasGuessed(false);
+    setFeedback("Feedback");
   };
 
   return (
@@ -58,7 +70,7 @@ function App() {
           </div>
 
           <div className="guess">
-            <span className="score">Too low!</span>
+            <span className="score">{feedback}</span>
             <button
               className="guess-btn"
               id="guess-btn"
