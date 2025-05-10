@@ -6,11 +6,10 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-/* Base styling (applies to both modes) */
 .container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -18,12 +17,10 @@
   transition: background-color 0.5s ease;
 }
 
-/* Styling when animation is OFF */
 .container.animation-off {
   background-color: rgb(228, 228, 228);
 }
 
-/* Styling when animation is ON */
 .container.animation-on {
   background-color: transparent;
 }
@@ -32,7 +29,7 @@
   text-align: center;
   width: min(90%, 30rem);
   display: none;
-  z-index: 10;
+  z-index: 100;
 }
 
 .result-message.show {
@@ -64,13 +61,21 @@ h1 {
   text-align: center;
 }
 
-.difficulty, .enter-guess, .guess, .computer-guess, .remaining, .mode-toggle {
+.difficulty,
+.enter-guess,
+.guess,
+.computer-guess,
+.remaining,
+.mode-toggle {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.difficulty select, .enter-guess input, .guess button, .computer-guess input {
+.difficulty select,
+.enter-guess input,
+.guess button,
+.computer-guess input {
   border-radius: 0.3rem;
   border: #dedede solid 1px;
   width: 10rem;
@@ -78,7 +83,7 @@ h1 {
 }
 
 .guess span {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: 550;
 }
 
@@ -93,7 +98,8 @@ button.restart {
   border: #dedede solid 1px;
 }
 
-.computer-guess input, button {
+.computer-guess input,
+button {
   background-color: #dedede;
 }
 
